@@ -13,8 +13,13 @@ export const userSLice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
+    setLogout: (state) => {
+      state.user = null;
+      state.token = null;
+    },
   },
 });
 
 export const { setLogin } = userSLice.actions;
+export const { setLogout } = userSLice.actions;
 export default userSLice.reducer;

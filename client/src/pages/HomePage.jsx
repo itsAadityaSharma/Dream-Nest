@@ -1,9 +1,9 @@
-import React from 'react';
-
+import React from "react";
+import Navbar from "../components/Navbar";
 const HomePage = () => {
   return (
     <div>
-      <h1>HomePage</h1>
+      <Navbar />
     </div>
   );
 };
