@@ -2,7 +2,9 @@ import React from "react";
 import "../styles/CreateListing.scss";
 import Navbar from "../components/Navbar";
 import { categories } from "../data";
-import { types } from "../data";
+import { types, facilities } from "../data";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
+import variables from "../styles/variables.scss";
 
 const CreateListing = () => {
   return (
@@ -71,6 +73,106 @@ const CreateListing = () => {
                 <input type="text" placeholder="Country" name="country" />
               </div>
             </div>
+
+            <h3>Share some basics about your place</h3>
+            <div className="basics">
+              <div className="basic">
+                <p>Guests</p>
+                <div className="basic_count">
+                  <RemoveCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                  <p>1</p>
+                  <AddCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="basic">
+                <p>Bedrooms</p>
+                <div className="basic_count">
+                  <RemoveCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                  <p>1</p>
+                  <AddCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="basic">
+                <p>Beds</p>
+                <div className="basic_count">
+                  <RemoveCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                  <p>1</p>
+                  <AddCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="basic">
+                <p>Bathrooms</p>
+                <div className="basic_count">
+                  <RemoveCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                  <p>1</p>
+                  <AddCircleOutline
+                    sx={{
+                      fontSize: "25px",
+                      cursor: "pointer",
+                      "&:hover": { color: variables.pinkred },
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="create-listing_step2">
+            <h2>Step 2: Make your place stand out</h2>
+            <hr />
+            <h3>Tell guests what your place has to offer</h3>
+            <div className="amenities">
+              {facilities?.map((item, index) => (
+                <div className="facility" key={index}>
+                  <div className="facility_icon">{item.icon}</div>
+                  <p>{item.name}</p>
+                </div>
+              ))}
+            </div>
+            <h3>Add some photos of your place</h3>
+            <input type="file" />
           </div>
         </form>
       </div>
