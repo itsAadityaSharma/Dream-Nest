@@ -291,7 +291,7 @@ const CreateListing = () => {
                     amenities.includes(item.name) ? "selected" : ""
                   }`}
                   key={index}
-                  onClick={() => handleSelectAmenities(item.name)}
+                  onClick={() => handleSelectAmenities(item)}
                 >
                   <div className="facility_icon">{item.icon}</div>
                   <p>{item.name}</p>
