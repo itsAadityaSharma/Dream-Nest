@@ -10,8 +10,48 @@ import { IoIosImages } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
 
 const CreateListing = () => {
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
+
+  /*AMINITIES*/
+  const [amenities, setAmenities] = useState([]);
+
+  const handleSelectAmenities = (facility) => {
+    if (amenities.includes(facility)) {
+      setAmenities((prevAmenities) =>
+        prevAmenities.filter((option) => option !== facility)
+      );
+    } else {
+      setAmenities((prev) => [...prev, facility]);
+    }
+  };
+  console.log(amenities);
+
+  /*LOCATION */
+  const [formLocation, setFormLocation] = useState({
+    streetAddress: "",
+    aptSuite: "",
+    city: "",
+    province: "",
+    country: "",
+  });
+
+  const handleChangeLocation = (e) => {
+    const { name, value } = e.target;
+    setFormLocation({
+      ...formLocation,
+      [name]: value,
+    });
+  };
+  /**Basic Counts */
+  const [guestCount, setGuestCount] = useState(1);
+  const [bedroomsCount, setBedroomsCount] = useState(1);
+  const [bedsCount, setBedsCount] = useState(1);
+  const [bathroomsCount, setBathroomsCount] = useState(1);
+
   /*UPLOAD, DRAG, & DROP, REMOVE PHOTOS*/
   const [photos, setPhotos] = useState([]);
+
   const handleUploadPhotos = (e) => {
     const newPhotos = e.target.files;
     setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
@@ -43,7 +83,13 @@ const CreateListing = () => {
             <h3>Which of these categories best describes your place?</h3>
             <div className="category-list">
               {categories.map((item, index) => (
-                <div className="category" key={index}>
+                <div
+                  className={`category ${
+                    category === item.label ? "selected" : ""
+                  }`}
+                  key={index}
+                  onClick={() => setCategory(item.label)}
+                >
                   <div className="category_icon">{item.icon}</div>
                   <p>{item.label}</p>
                 </div>
@@ -52,7 +98,11 @@ const CreateListing = () => {
             <h3>What type of place will guests have ?</h3>
             <div className="type-list">
               {types?.map((item, index) => (
-                <div className="type">
+                <div
+                  className={`type ${type == item.name ? "selected" : ""}`}
+                  key={index}
+                  onClick={() => setType(item.name)}
+                >
                   <div className="type_text">
                     <h4>{item.name}</h4>
                     <p>{item.description}</p>
@@ -69,6 +119,8 @@ const CreateListing = () => {
                   type="text"
                   placeholder="Street Address"
                   name="streetAddress"
+                  value={formLocation.streetAddress}
+                  onChange={handleChangeLocation}
                   required
                 />
               </div>
@@ -80,21 +132,41 @@ const CreateListing = () => {
                   type="text"
                   placeholder="Apartment , Suite, etc. (if applicable)"
                   name="aptSuite"
+                  value={formLocation.aptSuite}
+                  onChange={handleChangeLocation}
                 />
               </div>
               <div className="location">
                 <p>City</p>
-                <input type="text" placeholder="City" name="city" />
+                <input
+                  type="text"
+                  placeholder="City"
+                  name="city"
+                  value={formLocation.city}
+                  onChange={handleChangeLocation}
+                />
               </div>
             </div>
             <div className="half">
               <div className="location">
                 <p>Province</p>
-                <input type="text" placeholder="Province" name="province" />
+                <input
+                  type="text"
+                  placeholder="Province"
+                  name="province"
+                  value={formLocation.province}
+                  onChange={handleChangeLocation}
+                />
               </div>
               <div className="location">
                 <p>Country</p>
-                <input type="text" placeholder="Country" name="country" />
+                <input
+                  type="text"
+                  placeholder="Country"
+                  name="country"
+                  value={formLocation.country}
+                  onChange={handleChangeLocation}
+                />
               </div>
             </div>
 
@@ -104,14 +176,20 @@ const CreateListing = () => {
                 <p>Guests</p>
                 <div className="basic_count">
                   <RemoveCircleOutline
+                    onClick={() => {
+                      guestCount > 1 && setGuestCount(guestCount - 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
                       "&:hover": { color: variables.pinkred },
                     }}
                   />
-                  <p>1</p>
+                  <p>{guestCount}</p>
                   <AddCircleOutline
+                    onClick={() => {
+                      setGuestCount(guestCount + 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
@@ -124,14 +202,20 @@ const CreateListing = () => {
                 <p>Bedrooms</p>
                 <div className="basic_count">
                   <RemoveCircleOutline
+                    onClick={() => {
+                      bedroomsCount > 1 && setBedroomsCount(bedroomsCount - 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
                       "&:hover": { color: variables.pinkred },
                     }}
                   />
-                  <p>1</p>
+                  <p>{bedroomsCount}</p>
                   <AddCircleOutline
+                    onClick={() => {
+                      setBedroomsCount(bedroomsCount + 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
@@ -144,14 +228,20 @@ const CreateListing = () => {
                 <p>Beds</p>
                 <div className="basic_count">
                   <RemoveCircleOutline
+                    onClick={() => {
+                      bedsCount > 1 && setBedsCount(bedsCount - 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
                       "&:hover": { color: variables.pinkred },
                     }}
                   />
-                  <p>1</p>
+                  <p>{bedsCount}</p>
                   <AddCircleOutline
+                    onClick={() => {
+                      setBedsCount(bedsCount + 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
@@ -164,14 +254,21 @@ const CreateListing = () => {
                 <p>Bathrooms</p>
                 <div className="basic_count">
                   <RemoveCircleOutline
+                    onClick={() => {
+                      bathroomsCount > 1 &&
+                        setBathroomsCount(bathroomsCount - 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
                       "&:hover": { color: variables.pinkred },
                     }}
                   />
-                  <p>1</p>
+                  <p>{bathroomsCount}</p>
                   <AddCircleOutline
+                    onClick={() => {
+                      setBathroomsCount(bathroomsCount + 1);
+                    }}
                     sx={{
                       fontSize: "25px",
                       cursor: "pointer",
@@ -189,7 +286,13 @@ const CreateListing = () => {
             <h3>Tell guests what your place has to offer</h3>
             <div className="amenities">
               {facilities?.map((item, index) => (
-                <div className="facility" key={index}>
+                <div
+                  className={`facility ${
+                    amenities.includes(item.name) ? "selected" : ""
+                  }`}
+                  key={index}
+                  onClick={() => handleSelectAmenities(item.name)}
+                >
                   <div className="facility_icon">{item.icon}</div>
                   <p>{item.name}</p>
                 </div>
