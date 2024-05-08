@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Register.scss";
-//2:45:00
+//3:02:00
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     firstName: "",
