@@ -25,7 +25,7 @@ const CreateListing = () => {
       setAmenities((prev) => [...prev, facility]);
     }
   };
-  console.log(amenities);
+  // console.log(amenities);
 
   /*LOCATION */
   const [formLocation, setFormLocation] = useState({
@@ -70,6 +70,20 @@ const CreateListing = () => {
       prevPhotos.filter((_, index) => index !== indexToRemove)
     );
   };
+
+  const [formDescription, setFormDescription] = useState({
+    title: "",
+    description: "",
+    highlight: "",
+    highlightDesc: "",
+    price: "",
+  });
+
+  const handleChangeDescription = (e) => {
+    const { name, value } = e.target;
+    setFormDescription({ ...formDescription, [name]: value });
+  };
+  console.log(formDescription);
 
   return (
     <>
@@ -379,12 +393,21 @@ const CreateListing = () => {
             <h3>What make your place attractive and exciting ?</h3>
             <div className="description">
               <p>Title</p>
-              <textarea type="text" placeholder="Title" name="title" required />
+              <textarea
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={formDescription.title}
+                onChange={(e) => handleChangeDescription(e)}
+                required
+              />
               <p>Description</p>
               <input
                 type="text"
                 placeholder="Description"
                 name="description"
+                value={formDescription.description}
+                onChange={(e) => handleChangeDescription(e)}
                 required
               />
               <p>Highlight</p>
@@ -392,23 +415,34 @@ const CreateListing = () => {
                 type="text"
                 placeholder="Highlight"
                 name="highlight"
+                value={formDescription.highlight}
+                onChange={(e) => handleChangeDescription(e)}
                 required
               />
               <p>Highlight details</p>
               <textarea
                 type="text"
+                value={formDescription.highlightDesc}
                 placeholder="Highlight details"
                 name="highlightDesc"
+                onChange={(e) => handleChangeDescription(e)}
                 required
               />
               <p>Now, set your PRICE</p>
               <span>$</span>
+
               <input
                 type="number"
                 placeholder="100"
                 className="price"
+                name="price"
+                value={formDescription.price}
+                onChange={(e) => handleChangeDescription(e)}
                 required
               />
+              {formDescription.price < 0
+                ? setFormDescription({ ...formDescription, price: 0 })
+                : ""}
             </div>
           </div>
         </form>
