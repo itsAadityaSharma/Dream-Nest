@@ -88,7 +88,7 @@ router.get("/", async (req, res) => {
         "creator"
       );
     } else {
-      listings = await Listing.find();
+      listings = await Listing.find().populate("creator");
     }
     res.status(200).json(listings);
   } catch (err) {
