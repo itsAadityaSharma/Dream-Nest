@@ -47,9 +47,9 @@ const Listing = () => {
       {loading ? (
         <Loader></Loader>
       ) : (
-        <div className="">
+        <div className="listings">
           {listings.map((listing) => (
-            <ListingCard />
+            <ListingCard listing={listing} />
           ))}
         </div>
       )}
