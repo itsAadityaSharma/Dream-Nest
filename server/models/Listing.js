@@ -14,7 +14,7 @@ const ListingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    streetAdress: {
+    streetAddress: {
       type: String,
       required: true,
     },
