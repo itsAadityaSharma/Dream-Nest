@@ -4,7 +4,8 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
-
+import ListingDetail from "./pages/ListingDetail";
+//5:03:00
 function App() {
   return (
     <div>
@@ -14,6 +15,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create_listing" element={<CreateListing />} />
+          <Route path="/properties/:listingId" element={<ListingDetail />} />
           <Route />
           <Route />
         </Routes>

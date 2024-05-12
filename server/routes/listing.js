@@ -42,7 +42,7 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
     } = req.body;
 
     const listingPhotos = req.files;
-
+    const newAmenities = amenities.split(",");
     if (!listingPhotos) {
       return res.status(400).send("No file uploaded");
     }
@@ -61,7 +61,7 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       bedroomCount,
       bedCount,
       bathroomCount,
-      amenities,
+      amenities: newAmenities,
       listingPhotoPaths,
       title,
       description,
@@ -95,6 +95,22 @@ router.get("/", async (req, res) => {
     res
       .status(404)
       .json({ message: "Fail to fetch Listing", error: err.message });
+  }
+});
+
+/* LISTING DETAILS*/
+
+router.get("/:listingId", async (req, res) => {
+  try {
+    const { listingId } = req.params;
+    let listingDetals = await Listing.findById(listingId).populate("creator");
+    if (listingDetals) {
+      res.status(200).json(listingDetals);
+    } else {
+      res.status(404).json({ message: "No data found" });
+    }
+  } catch (err) {
+    res.status(400).json({ message: "Error Occured", error: err });
   }
 });
 

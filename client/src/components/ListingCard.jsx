@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/ListingCard.scss";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const ListingCard = ({ listing }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,10 +27,12 @@ const ListingCard = ({ listing }) => {
         >
           {listing.listingPhotoPaths?.map((photo, index) => (
             <div className="slide" key={index}>
-              <img
-                src={`http://localhost:3001${photo.replace("public", "")}`}
-                alt={`photo ${index + 1}`}
-              ></img>
+              <Link to={`/properties/${listing._id}`}>
+                <img
+                  src={`http://localhost:3001${photo.replace("public", "")}`}
+                  alt={`photo ${index + 1}`}
+                ></img>
+              </Link>
               <div
                 className="prev-button"
                 onClick={() => goToPrevSlide(listing.listingPhotoPaths)}
