@@ -5,7 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./pages/ListingDetail";
-//5:03:00
+//5:24:00
 function App() {
   return (
     <div>
