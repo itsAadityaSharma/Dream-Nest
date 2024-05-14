@@ -4,7 +4,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const ListingCard = ({ listing }) => {
+const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevSlide = (listingPhotoPaths) => {
@@ -27,12 +27,19 @@ const ListingCard = ({ listing }) => {
         >
           {listing.listingPhotoPaths?.map((photo, index) => (
             <div className="slide" key={index}>
-              <Link to={`/properties/${listing._id}`}>
+              {!booking ? (
+                <Link to={`/properties/${listing._id}`}>
+                  <img
+                    src={`http://localhost:3001${photo.replace("public", "")}`}
+                    alt={`photo ${index + 1}`}
+                  ></img>
+                </Link>
+              ) : (
                 <img
                   src={`http://localhost:3001${photo.replace("public", "")}`}
                   alt={`photo ${index + 1}`}
                 ></img>
-              </Link>
+              )}
               <div
                 className="prev-button"
                 onClick={() => goToPrevSlide(listing.listingPhotoPaths)}
@@ -53,10 +60,24 @@ const ListingCard = ({ listing }) => {
         {listing.city},{listing.province},{listing.country}
       </h3>
       <p>{listing.category}</p>
-      <p>{listing.type}</p>
-      <p>
-        <span>${listing.price}</span> per night
-      </p>
+
+      {!booking ? (
+        <>
+          <p>{listing.type}</p>
+          <p>
+            <span>${listing.price}</span> per night
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            {startDate} - {endDate}
+          </p>
+          <p>
+            <span>$ {totalPrice} total</span>
+          </p>
+        </>
+      )}
     </div>
   );
 };

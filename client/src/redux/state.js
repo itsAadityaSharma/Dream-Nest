@@ -21,10 +21,14 @@ export const userSLice = createSlice({
     setListings: (state, action) => {
       state.listings = action.payload.listings;
     },
+    setTripList: (state, action) => {
+      state.user.tripList = action.payload;
+    },
   },
 });
 
 export const { setLogin } = userSLice.actions;
 export const { setLogout } = userSLice.actions;
 export const { setListings } = userSLice.actions;
+export const { setTripList } = userSLice.actions;
 export default userSLice.reducer;

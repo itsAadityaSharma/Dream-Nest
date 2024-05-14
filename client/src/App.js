@@ -5,7 +5,8 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./pages/ListingDetail";
-//5:24:00
+import Triplist from "./pages/Triplist";
+//5:43:00
 function App() {
   return (
     <div>
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create_listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetail />} />
+          <Route path="/:userId/trips" element={<Triplist />} />
           <Route />
           <Route />
         </Routes>
