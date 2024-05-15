@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/ListingCard.scss";
 import { MdArrowBackIosNew } from "react-icons/md";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import {
+  ArrowBackIosNew,
+  ArrowForwardIos,
+  Favorite,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setWishList } from "../redux/state";
 
 const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,6 +22,31 @@ const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
 
   const goToNextSlide = (listingPhotoPaths) => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % listingPhotoPaths.length);
+  };
+
+  /*ADD TO WISHLIST */
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const wishList = user?.wishList || [];
+
+  const isLiked = wishList.find((item) => item?._id === listing._id);
+  // console.log(wishList);
+
+  const patchWishList = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/users/${user?._id}/${listing._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      dispatch(setWishList(data.wishlist));
+    } catch (err) {}
   };
 
   return (
@@ -78,6 +109,20 @@ const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
           </p>
         </>
       )}
+      <div
+        className="favorite"
+        onClick={(e) => {
+          e.stopPropagation();
+          patchWishList();
+        }}
+        // disabled={!user}
+      >
+        {isLiked ? (
+          <Favorite sx={{ color: "red" }} />
+        ) : (
+          <Favorite sx={{ color: "white" }} />
+        )}
+      </div>
     </div>
   );
 };

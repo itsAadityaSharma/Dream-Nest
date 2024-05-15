@@ -24,6 +24,9 @@ export const userSLice = createSlice({
     setTripList: (state, action) => {
       state.user.tripList = action.payload;
     },
+    setWishList: (state, action) => {
+      state.user.wishList = action.payload;
+    },
   },
 });
 
@@ -31,4 +34,5 @@ export const { setLogin } = userSLice.actions;
 export const { setLogout } = userSLice.actions;
 export const { setListings } = userSLice.actions;
 export const { setTripList } = userSLice.actions;
+export const { setWishList } = userSLice.actions;
 export default userSLice.reducer;

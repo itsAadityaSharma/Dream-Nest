@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./pages/ListingDetail";
 import Triplist from "./pages/Triplist";
-//5:43:00
+//5:58:00
 function App() {
   return (
     <div>
