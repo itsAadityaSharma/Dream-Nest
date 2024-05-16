@@ -109,20 +109,24 @@ const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
           </p>
         </>
       )}
-      <div
-        className="favorite"
-        onClick={(e) => {
-          e.stopPropagation();
-          patchWishList();
-        }}
-        // disabled={!user}
-      >
-        {isLiked ? (
-          <Favorite sx={{ color: "red" }} />
-        ) : (
-          <Favorite sx={{ color: "white" }} />
-        )}
-      </div>
+      {!booking ? (
+        <div
+          className="favorite"
+          onClick={(e) => {
+            e.stopPropagation();
+            patchWishList();
+          }}
+          // disabled={!user}
+        >
+          {isLiked ? (
+            <Favorite sx={{ color: "red" }} />
+          ) : (
+            <Favorite sx={{ color: "white" }} />
+          )}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

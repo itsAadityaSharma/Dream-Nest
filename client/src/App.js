@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./pages/ListingDetail";
 import Triplist from "./pages/Triplist";
+import WishList from "./pages/WishList";
 //5:58:00
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/create_listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetail />} />
           <Route path="/:userId/trips" element={<Triplist />} />
+          <Route path="/wishlist" element={<WishList />} />
           <Route />
           <Route />
         </Routes>
