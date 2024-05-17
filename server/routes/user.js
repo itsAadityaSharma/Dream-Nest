@@ -26,7 +26,7 @@ router.patch("/:userId/:listingId", async (req, res) => {
   try {
     const { userId, listingId } = req.params;
     const user = await User.findById(userId);
-    const listing = await Listing.findById(listingId);
+    const listing = await Listing.findById(listingId).populate("creator");
     const favouriteListing = user.wishList.find(
       (item) => item._id.toString() === listingId
     );
@@ -50,6 +50,21 @@ router.patch("/:userId/:listingId", async (req, res) => {
   } catch (err) {
     console.log("Error occur while updating the wishlist", err);
     res.status(400).json({ error: err.message });
+  }
+});
+
+/*GET PROPERTY LIST */
+router.get("/:userId/properties", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const properties = await Listing.find({ creator: userId }).populate(
+      "creator"
+    );
+    console.log(properties);
+    res.status(200).json(properties);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Cannot find properties", error: err });
   }
 });
 

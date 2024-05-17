@@ -27,6 +27,9 @@ export const userSLice = createSlice({
     setWishList: (state, action) => {
       state.user.wishList = action.payload;
     },
+    setProperties: (state, action) => {
+      state.user.propertyList = action.payload;
+    },
   },
 });
 
@@ -35,4 +38,5 @@ export const { setLogout } = userSLice.actions;
 export const { setListings } = userSLice.actions;
 export const { setTripList } = userSLice.actions;
 export const { setWishList } = userSLice.actions;
+export const { setProperties } = userSLice.actions;
 export default userSLice.reducer;
