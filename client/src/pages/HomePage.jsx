@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Slide from "../components/Slide";
 import Categories from "../components/Categories";
 import Listing from "../components/Listings";
+import Footer from "../components/Footer";
 const HomePage = () => {
   return (
     <div>
@@ -10,6 +11,7 @@ const HomePage = () => {
       <Slide />
       <Categories />
       <Listing />
+      <Footer />
     </div>
   );
 };

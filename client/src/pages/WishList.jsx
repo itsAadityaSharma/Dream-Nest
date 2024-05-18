@@ -3,6 +3,7 @@ import "../styles/List.scss";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
+import Footer from "../components/Footer";
 const WishList = () => {
   const wishList = useSelector((state) => state.user.wishList);
   return (
@@ -18,6 +19,7 @@ const WishList = () => {
       ) : (
         <h3 className="title-list">Nothing added to wishlist !</h3>
       )}
+      <Footer />
     </>
   );
 };

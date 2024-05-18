@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import { setProperties } from "../redux/state";
+import Footer from "../components/Footer";
 const PropertyList = () => {
   const properties = useSelector((state) => state.user?.propertyList);
 
@@ -42,6 +43,7 @@ const PropertyList = () => {
       ) : (
         <h3 className="title-list">Nothing added to Property List !</h3>
       )}
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setListings } from "../redux/state";
 import ListingCard from "../components/ListingCard";
+import Footer from "../components/Footer";
 
 const CategoryPage = () => {
   const [loading, setLoading] = useState(true);
@@ -50,6 +51,7 @@ const CategoryPage = () => {
           Nothing added to this {selectedCategory} Category !
         </h3>
       )}
+      <Footer />
     </>
   );
 };

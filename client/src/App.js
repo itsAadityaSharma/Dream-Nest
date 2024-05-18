@@ -10,6 +10,7 @@ import WishList from "./pages/WishList";
 import PropertyList from "./pages/PropertyList";
 import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
+import SearchPage from "./pages/SearchPage";
 //5:58:00
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/category/:selectedCategory"
             element={<CategoryPage />}
           />
+          <Route path="/search/:searchVal" element={<SearchPage />} />
           <Route />
           <Route />
         </Routes>

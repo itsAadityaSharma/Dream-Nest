@@ -50,8 +50,8 @@ const Listing = () => {
         <Loader></Loader>
       ) : (
         <div className="listings">
-          {listings.map((listing) => (
-            <ListingCard listing={listing} />
+          {listings.map((listing, index) => (
+            <ListingCard listing={listing} key={index} />
           ))}
         </div>
       )}

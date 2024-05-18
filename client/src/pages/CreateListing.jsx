@@ -10,6 +10,7 @@ import { IoIosImages } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 const CreateListing = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
@@ -501,6 +502,7 @@ const CreateListing = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };
