@@ -66,8 +66,8 @@ const Navbar = () => {
             <Link to={`/${user._id}/trips`}>Trip List</Link>
             <Link to="/wishlist">Wish List</Link>
             <Link to={`/${user._id}/properties`}>Property List</Link>
-            <Link to="/">Reservation List</Link>
-            <Link to="/">Become A Host</Link>
+            <Link to={`/${user._id}/reservation`}>Reservation List</Link>
+            {/* <Link to="/">Become A Host</Link> */}
 
             <Link
               to="/login"

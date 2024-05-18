@@ -8,6 +8,8 @@ import ListingDetail from "./pages/ListingDetail";
 import Triplist from "./pages/Triplist";
 import WishList from "./pages/WishList";
 import PropertyList from "./pages/PropertyList";
+import ReservationList from "./pages/ReservationList";
+import CategoryPage from "./pages/CategoryPage";
 //5:58:00
 function App() {
   return (
@@ -22,6 +24,11 @@ function App() {
           <Route path="/:userId/trips" element={<Triplist />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/:userId/properties" element={<PropertyList />} />
+          <Route path="/:userId/reservation" element={<ReservationList />} />
+          <Route
+            path="/category/:selectedCategory"
+            element={<CategoryPage />}
+          />
           <Route />
           <Route />
         </Routes>

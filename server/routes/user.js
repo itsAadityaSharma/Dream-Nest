@@ -68,4 +68,19 @@ router.get("/:userId/properties", async (req, res) => {
   }
 });
 
+/*GET RESERVATION LIST */
+router.get("/:userId/reservation", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const reservation = await Booking.find({ hostId: userId }).populate(
+      "customerId hostId listingId"
+    );
+
+    res.status(200).json(reservation);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Can not find reservation ", error: err });
+  }
+});
+
 module.exports = router;
