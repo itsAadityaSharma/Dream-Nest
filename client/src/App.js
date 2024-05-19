@@ -21,7 +21,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create_listing" element={<CreateListing />} />
-          <Route path="/properties/:listingId" element={<ListingDetail />} />
+          <Route
+            path="/properties/details/:listingId"
+            element={<ListingDetail />}
+          />
           <Route path="/:userId/trips" element={<Triplist />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/:userId/properties" element={<PropertyList />} />

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const path = require("path");
 
 const authRoutes = require("./routes/auth.js");
 const listingRoutes = require("./routes/listing.js");
@@ -18,6 +19,11 @@ app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
 app.use("/booking", bookingRoutes);
 app.use("/users", userRoutes);
+
+app.use(express.static(path.join(__dirname, "..", "server", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "server", "build", "index.html"));
+});
 
 /*Mongoose SETUP*/
 const PORT = 3001;

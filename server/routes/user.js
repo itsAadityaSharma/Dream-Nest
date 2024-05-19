@@ -37,7 +37,7 @@ router.patch("/:userId/:listingId", async (req, res) => {
       await user.save();
       res.status(200).json({
         message: "Listing is removed from wish lost",
-        wishList: user.wishList,
+        wishlist: user.wishList,
       });
     } else {
       user.wishList.push(listing);

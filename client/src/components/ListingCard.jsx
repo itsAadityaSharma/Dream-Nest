@@ -59,7 +59,7 @@ const ListingCard = ({ listing, startDate, endDate, totalPrice, booking }) => {
           {listing.listingPhotoPaths?.map((photo, index) => (
             <div className="slide" key={index}>
               {!booking ? (
-                <Link to={`/properties/${listing._id}`}>
+                <Link to={`/properties/details/${listing._id}`}>
                   <img
                     src={`http://localhost:3001${photo.replace("public", "")}`}
                     alt={`photo ${index + 1}`}
